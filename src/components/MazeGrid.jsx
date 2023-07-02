@@ -8,7 +8,8 @@ import {
     KEYS,
     ROW_KEYS,
     CELL_STATE,
-    GRID_VALUE
+    GRID_VALUE,
+
 } from "../utils/constants";
 import Cell from "./Cell";
 
@@ -18,6 +19,7 @@ const MazeGrid = () => {
      */
     const [grid, setGrid] = useState([]);
     const [gridState, setGridState] = useState([]);
+
 
     useEffect(() => {
         const initialGrid = [];
@@ -62,7 +64,7 @@ const MazeGrid = () => {
                             className="row"
                             css={rowStyling}
                         >
-                            {row.map((col, cidx) => (
+                            {row.map((cell, cidx) => (
                                 <Cell
                                     key={KEYS[ridx][cidx]}
                                     ridx={ridx}

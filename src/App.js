@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -8,24 +8,29 @@ import MazeGrid from "./components/MazeGrid";
 import OptionsBar from "./components/OptionsBar";
 import "@fontsource/roboto/300.css";
 
+import { ALGO_SELECT, ADD_EDIT_SELECT, SPEED_SELECT } from "./utils/constants";
+
 const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-  },
+    palette: {
+        mode: "dark",
+    },
 });
 
 // TODO: Make the size of each cell dependent on the viewport height and width available
 
 const App = () => {
-  return (
-    <>
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <OptionsBar />
-      <MazeGrid />2
-      </ThemeProvider>
-    </>
-  );
+    const [algo, setAlgo] = useState(ALGO_SELECT.DEFAULT);
+    const [addEdit, setAddEdit] = useState(ADD_EDIT_SELECT.DEFAULT);
+    const [speed, setSpeed] = useState(SPEED_SELECT.DEFAULT);
+    return (
+        <>
+            <ThemeProvider theme={darkTheme}>
+                <CssBaseline />
+                <OptionsBar algo={algo} setAlgo={setAlgo} addEdit={addEdit} setAddEdit={setAddEdit} speed={speed} setSpeed={setSpeed} />
+                <MazeGrid algo={algo} setAlgo={setAlgo} addEdit={addEdit} setAddEdit={setAddEdit} speed={speed} setSpeed={setSpeed} />
+            </ThemeProvider>
+        </>
+    );
 };
 
 export default App;
