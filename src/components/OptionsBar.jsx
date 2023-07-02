@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -22,9 +22,7 @@ const theme = createTheme({
     },
 });
 
-function OptionsBar({ setAlgo, setAddEdit, setSpeed, setWeight }) {
-
-    const [isWeightSelected, setIsWeightSelected] = useState(false);
+function OptionsBar({ setAlgo, setAddEdit, setSpeed, setWeight, isWeightSelected, setIsWeightSelected }) {
 
     return (
         <AppBar sx={{ backgroundColor: "#023047" }} position="static">

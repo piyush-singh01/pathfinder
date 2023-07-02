@@ -14,12 +14,12 @@ export const ALGO_SELECT = {
 }
 
 export const ADD_EDIT_SELECT = {
-    DEFAULT: 0,
     OBSTACLE: 0,
     SOURCE: 1,
     DESTINATION: 2,
     WEIGHTED_CELL: 3,
-    CHECKPOINT: 4
+    CHECKPOINT: 4,
+    DEFAULT: 1
 }
 
 
@@ -48,16 +48,18 @@ export const CELL_STATE = {
     SOURCE: 1,
     OBSTACLE: 2,
     DESTINATION: 3,
-    ENQUEUED: 4,
-    VISITED: 5,
-    SHORTEST: 6
+    CHECKPOINT: 4,
+    ENQUEUED: 5,
+    VISITED: 6,
+    SHORTEST: 7
 }
 
 export const CELL_COLORS = {
     BLANK: "white",
-    SOURCE: "#d3ed0e",
+    SOURCE: "#1231e1",
     OBSTACLE: "#023047",
-
+    DESTINATION: "#F86F03",
+    CHECKPOINT: "#ff1212",
     WEIGHTED_CELL: {
         WEIGHT_1: "#cad2c5",
         WEIGHT_2: "#84a98c",
@@ -65,10 +67,9 @@ export const CELL_COLORS = {
         WEIGHT_4: "#354f52",
         WEIGHT_5: "#2f3e46",
     },
-    DESTINATION: "",
-    ENQUEUED: "",
-    VISITED:"",
-    SHORTEST: ""
+    ENQUEUED: "#17594A",
+    VISITED:"#B31312",
+    SHORTEST: "#11009E",
 }
 
 export const DELAY = {
@@ -76,22 +77,6 @@ export const DELAY = {
     NORMAL: 250,
     FAST: 50
 }
-
-// export const CELL_SELECT_MODE = {
-//     DEFAULT:1,
-//     OBSTACLE:1,
-//     SOURCE:2,
-//     DESTINATION:3,
-//     WEIGHTED_CELL:4,
-//     CHECKPOINT:5
-// }
-
-// export const SELECT_STATE = {
-//     BLANK:0,
-//     SOURCE_SELECT:1,
-//     OBSTACLE_SELECT:2,
-//     DESTINATION_SELECT:3
-// }
 
 export const KEYS = [];
 export const ROW_KEYS = [];

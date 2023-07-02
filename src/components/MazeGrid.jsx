@@ -13,10 +13,8 @@ import {
 } from "../utils/constants";
 import Cell from "./Cell";
 
-const MazeGrid = () => {
-    /**
-     * Grid containing values and Grid State containing demarkation
-     */
+const MazeGrid = ({ addEdit, weight, currSource, currDestination, setCurrSource, setCurrDestination }) => {
+    //Grid containing values and Grid State containing demarkation
     const [grid, setGrid] = useState([]);
     const [gridState, setGridState] = useState([]);
 
@@ -71,6 +69,12 @@ const MazeGrid = () => {
                                     cidx={cidx}
                                     gridState={gridState}
                                     setGridState={setGridState}
+                                    addEdit={addEdit}
+                                    weight={weight}
+                                    currSource={currSource}
+                                    currDestination={currDestination}
+                                    setCurrSource={setCurrSource}
+                                    setCurrDestination={setCurrDestination}
                                 ></Cell>
                             ))}
                         </div>
