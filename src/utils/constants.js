@@ -89,12 +89,3 @@ for(let r = 0;r<GRID_ROWS;r++) {
 }
 
 export const BUTTON_COLOR = "#64CCC5";
-
-
-/*
-
-What we need
-    First a selector to select the algorithm, the add/edit option, the speed
-    We need a state for each of these
-    Then we need a state to maintain the Weight, if a weighted cell is selected.
-*/
