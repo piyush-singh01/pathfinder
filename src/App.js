@@ -22,12 +22,13 @@ const App = () => {
     const [algo, setAlgo] = useState(ALGO_SELECT.DEFAULT);
     const [addEdit, setAddEdit] = useState(ADD_EDIT_SELECT.DEFAULT);
     const [speed, setSpeed] = useState(SPEED_SELECT.DEFAULT);
+    const [weight, setWeight] = useState(1);
     return (
         <>
             <ThemeProvider theme={darkTheme}>
                 <CssBaseline />
-                <OptionsBar algo={algo} setAlgo={setAlgo} addEdit={addEdit} setAddEdit={setAddEdit} speed={speed} setSpeed={setSpeed} />
-                <MazeGrid algo={algo} setAlgo={setAlgo} addEdit={addEdit} setAddEdit={setAddEdit} speed={speed} setSpeed={setSpeed} />
+                <OptionsBar setAlgo={setAlgo} setAddEdit={setAddEdit} setSpeed={setSpeed} setWeight={setWeight} />
+                <MazeGrid />
             </ThemeProvider>
         </>
     );

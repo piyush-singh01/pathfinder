@@ -8,7 +8,11 @@ import Typography from "@mui/material/Typography";
 
 import { ALGO_SELECT } from "../../utils/constants";
 
-const AlgoSelector = () => {
+const AlgoSelector = ({ setAlgo }) => {
+    const handleChange = (e) => {
+        setAlgo(e.target.value);
+    };
+
     return (
         <>
             <FormControl
@@ -37,12 +41,15 @@ const AlgoSelector = () => {
                     label="Algorithm"
                     sx={{ color: "white" }}
                     defaultValue={ALGO_SELECT.DEFAULT}
+                    onChange={handleChange}
                 >
                     <MenuItem value={ALGO_SELECT.A_STAR}>A*</MenuItem>
                     <MenuItem value={ALGO_SELECT.DIJKSTRA}>Dijkstra</MenuItem>
                     <MenuItem value={ALGO_SELECT.BFS}>BFS</MenuItem>
                     <MenuItem value={ALGO_SELECT.DFS}>DFS</MenuItem>
-                    <MenuItem value={ALGO_SELECT.GREEDY_BEST_FIRST}>Greedy Best First</MenuItem>
+                    <MenuItem value={ALGO_SELECT.GREEDY_BEST_FIRST}>
+                        Greedy Best First
+                    </MenuItem>
                 </Select>
             </FormControl>
         </>

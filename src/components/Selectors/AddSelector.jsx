@@ -8,14 +8,18 @@ import Typography from "@mui/material/Typography";
 
 import { ADD_EDIT_SELECT } from "../../utils/constants";
 
-const AddSelector = ({ isWeightedSelected, setIsWeightSelected }) => {
+const AddSelector = ({ setIsWeightSelected, setAddEdit }) => {
+    
     const handleChange = (e) => {
+        setAddEdit(e.target.value);
+
         if(e.target.value === ADD_EDIT_SELECT.WEIGHTED_CELL) {
             setIsWeightSelected(true);
         } else {
             setIsWeightSelected(false);
         }
     }
+
     return (
         <>
             <FormControl

@@ -22,9 +22,9 @@ const theme = createTheme({
     },
 });
 
-function OptionsBar() {
+function OptionsBar({ setAlgo, setAddEdit, setSpeed, setWeight }) {
 
-    const [isWeightedSelected, setIsWeightSelected] = useState(false);
+    const [isWeightSelected, setIsWeightSelected] = useState(false);
 
     return (
         <AppBar sx={{ backgroundColor: "#023047" }} position="static">
@@ -54,11 +54,11 @@ function OptionsBar() {
                             justifyContent: "space-between",
                         }}
                     >
-                        <AlgoSelector />
+                        <AlgoSelector setAlgo={setAlgo} />
 
                         <div>
-                            <AddSelector isWeightedSelected={isWeightedSelected} setIsWeightSelected={setIsWeightSelected} />
-                            <WeightSelector isWeightedSelected={isWeightedSelected} setIsWeightSelected={setIsWeightSelected} />
+                            <AddSelector setIsWeightSelected={setIsWeightSelected} setAddEdit={setAddEdit} />
+                            <WeightSelector isWeightSelected={isWeightSelected} setWeight={setWeight} />
                         </div>
 
                         <div style={{ display: "flex", alignItems: "center" }}>
@@ -86,7 +86,7 @@ function OptionsBar() {
                                 </Button>
                             </ThemeProvider>
                         </div>
-                        <SpeedSelector />
+                        <SpeedSelector setSpeed={setSpeed} />
                     </Box>
                 </Toolbar>
             </Container>

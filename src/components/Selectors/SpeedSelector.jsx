@@ -8,7 +8,10 @@ import Typography from "@mui/material/Typography";
 
 import { SPEED_SELECT } from "../../utils/constants";
 
-const SpeedSelector = () => {
+const SpeedSelector = ({ setSpeed }) => {
+    const handleChange = (e) => {
+        setSpeed(e.target.value);
+    }
     return (
         <>
             <FormControl
@@ -37,6 +40,7 @@ const SpeedSelector = () => {
                     label="Speed"
                     sx={{ color: "white" }}
                     defaultValue={SPEED_SELECT.DEFAULT}
+                    onChange={handleChange}
                 >
                     <MenuItem value={SPEED_SELECT.SLOW}>Slow</MenuItem>
                     <MenuItem value={SPEED_SELECT.NORMAL}>Normal</MenuItem>
