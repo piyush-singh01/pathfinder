@@ -20,7 +20,7 @@ const App = () => {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <OptionsBar />
-      <MazeGrid />
+      <MazeGrid />2
       </ThemeProvider>
     </>
   );
