@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -12,15 +12,20 @@ import AddSelector from "./Selectors/AddSelector";
 import SpeedSelector from "./Selectors/SpeedSelector";
 import WeightSelector from "./Selectors/WeightSelector";
 
+import { BUTTON_COLOR } from "../utils/constants";
+
 const theme = createTheme({
     palette: {
         primary: {
-            main: "#64CCC5",
+            main: BUTTON_COLOR,
         },
     },
 });
 
 function OptionsBar() {
+
+    const [isWeightedSelected, setIsWeightSelected] = useState(false);
+
     return (
         <AppBar sx={{ backgroundColor: "#023047" }} position="static">
             <Container maxWidth="xl">
@@ -52,8 +57,8 @@ function OptionsBar() {
                         <AlgoSelector />
 
                         <div>
-                            <AddSelector />
-                            <WeightSelector />
+                            <AddSelector isWeightedSelected={isWeightedSelected} setIsWeightSelected={setIsWeightSelected} />
+                            <WeightSelector isWeightedSelected={isWeightedSelected} setIsWeightSelected={setIsWeightSelected} />
                         </div>
 
                         <div style={{ display: "flex", alignItems: "center" }}>

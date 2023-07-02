@@ -6,6 +6,8 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Typography from "@mui/material/Typography";
 
+import { SPEED_SELECT } from "../../utils/constants";
+
 const SpeedSelector = () => {
     return (
         <>
@@ -29,16 +31,16 @@ const SpeedSelector = () => {
                     </Typography>
                 </InputLabel>
                 <Select
-                    labelId="test-select-label"
-                    id="demo-simple-select-autowidth"
+                    labelId="speed-select-label"
+                    id="speed-select-id"
                     autoWidth
                     label="Speed"
                     sx={{ color: "white" }}
-                    defaultValue = ""
+                    defaultValue={SPEED_SELECT.DEFAULT}
                 >
-                    <MenuItem value="slow">Slow</MenuItem>
-                    <MenuItem value="medium">Medium</MenuItem>
-                    <MenuItem value="fast">Fast</MenuItem>
+                    <MenuItem value={SPEED_SELECT.SLOW}>Slow</MenuItem>
+                    <MenuItem value={SPEED_SELECT.NORMAL}>Normal</MenuItem>
+                    <MenuItem value={SPEED_SELECT.FAST}>Fast</MenuItem>
                 </Select>
             </FormControl>
         </>

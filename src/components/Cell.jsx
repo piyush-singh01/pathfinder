@@ -1,29 +1,23 @@
 import React from "react";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { SELECT_STATE } from "../utils/constants";
+import { CELL_STATE, CELL_COLORS } from "../utils/constants";
 
 const Cell = ({
     ridx,
     cidx,
     gridState,
     setGridState,
-    sourceSelected,
-    setSourceSelected,
 }) => {
+
     const handleCellClick = () => {
         const newStateArray = gridState.map((row, r) => {
             const rowStateArray = row.map((cell, c) => {
                 if (r === ridx && c === cidx) {
-                    if (cell === SELECT_STATE.BLANK) {
-                        if (sourceSelected === false) {
-                            setSourceSelected(true);
-                            return SELECT_STATE.SOURCE_SELECT;
-                        } else {
-                            return SELECT_STATE.OBSTACLE_SELECT;
-                        }
+                    if (cell === CELL_STATE.BLANK) {
+                        return CELL_STATE.OBSTACLE;
                     } else {
-                        return SELECT_STATE.BLANK;
+                        return CELL_STATE.BLANK;
                     }
                 } else {
                     return cell;
@@ -39,16 +33,16 @@ const Cell = ({
         height: 24px;
         padding: 1px;
         border: thin solid darkcyan;
-        ${cellState === SELECT_STATE.BLANK
+        ${cellState === CELL_STATE.BLANK
             ? css`
-                  background-color: white;
+                  background-color: ${CELL_COLORS.BLANK};
               `
-            : cellState === SELECT_STATE.SOURCE_SELECT
+            : cellState === CELL_STATE.SOURCE
             ? css`
-                  background-color: #d3ed0e;
+                  background-color: ${CELL_COLORS.SOURCE};
               `
             : css`
-                  background-color: #023047;
+                  background-color: ${CELL_COLORS.OBSTACLE};
               `}
         transition: background-color 0.1s; //ease-in 0.3s;
     `;

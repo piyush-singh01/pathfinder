@@ -1,7 +1,7 @@
 import React from "react";
 import { TextField } from "@mui/material";
 
-const WeightSelector = () => {
+const WeightSelector = ({ isWeightedSelected, setIsWeightSelected }) => {
     return (
         <>
             <TextField
@@ -17,7 +17,7 @@ const WeightSelector = () => {
                     },
                     width: 50,
                 }}
-                disabled={false}
+                disabled={!isWeightedSelected}
             />
         </>
     );

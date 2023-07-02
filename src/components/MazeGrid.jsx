@@ -7,17 +7,17 @@ import {
     GRID_COLS,
     KEYS,
     ROW_KEYS,
-    SELECT_STATE,
-    CELL_SELECT_MODE,
+    CELL_STATE,
+    GRID_VALUE
 } from "../utils/constants";
 import Cell from "./Cell";
 
 const MazeGrid = () => {
+    /**
+     * Grid containing values and Grid State containing demarkation
+     */
     const [grid, setGrid] = useState([]);
     const [gridState, setGridState] = useState([]);
-    const [cellSelectMode, setCellSelectMode] = useState(CELL_SELECT_MODE.DEFAULT);
-
-    const [sourceSelected, setSourceSelected] = useState(false);
 
     useEffect(() => {
         const initialGrid = [];
@@ -26,8 +26,8 @@ const MazeGrid = () => {
             initialGrid[r] = [];
             initialState[r] = [];
             for (let c = 0; c < GRID_COLS; c++) {
-                initialGrid[r][c] = 0;
-                initialState[r][c] = SELECT_STATE.BLANK;
+                initialGrid[r][c] = GRID_VALUE.BLANK;
+                initialState[r][c] = CELL_STATE.BLANK;
             }
         }
         setGrid(initialGrid);
@@ -69,8 +69,6 @@ const MazeGrid = () => {
                                     cidx={cidx}
                                     gridState={gridState}
                                     setGridState={setGridState}
-                                    sourceSelected={sourceSelected}
-                                    setSourceSelected={setSourceSelected}
                                 ></Cell>
                             ))}
                         </div>

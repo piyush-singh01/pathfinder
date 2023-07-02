@@ -14,6 +14,8 @@ const darkTheme = createTheme({
   },
 });
 
+// TODO: Make the size of each cell dependent on the viewport height and width available
+
 const App = () => {
   return (
     <>

@@ -6,6 +6,8 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Typography from "@mui/material/Typography";
 
+import { ALGO_SELECT } from "../../utils/constants";
+
 const AlgoSelector = () => {
     return (
         <>
@@ -29,18 +31,18 @@ const AlgoSelector = () => {
                     </Typography>
                 </InputLabel>
                 <Select
-                    labelId="test-select-label"
-                    id="demo-simple-select-autowidth"
+                    labelId="algo-select-label"
+                    id="algo-select-id"
                     autoWidth
                     label="Algorithm"
                     sx={{ color: "white" }}
-                    defaultValue=""
+                    defaultValue={ALGO_SELECT.DEFAULT}
                 >
-                    <MenuItem value="Astar">A*</MenuItem>
-                    <MenuItem value="Dijkstra">Djikstra</MenuItem>
-                    <MenuItem value="BFS">BFS</MenuItem>
-                    <MenuItem value="DFS">DFS</MenuItem>
-                    <MenuItem value="GBS">Greedy Best First</MenuItem>
+                    <MenuItem value={ALGO_SELECT.A_STAR}>A*</MenuItem>
+                    <MenuItem value={ALGO_SELECT.DIJKSTRA}>Dijkstra</MenuItem>
+                    <MenuItem value={ALGO_SELECT.BFS}>BFS</MenuItem>
+                    <MenuItem value={ALGO_SELECT.DFS}>DFS</MenuItem>
+                    <MenuItem value={ALGO_SELECT.GREEDY_BEST_FIRST}>Greedy Best First</MenuItem>
                 </Select>
             </FormControl>
         </>

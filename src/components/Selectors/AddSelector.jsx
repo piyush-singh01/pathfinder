@@ -6,9 +6,17 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Typography from "@mui/material/Typography";
 
-const AddSelector = () => {
+import { ADD_EDIT_SELECT } from "../../utils/constants";
 
-  return (
+const AddSelector = ({ isWeightedSelected, setIsWeightSelected }) => {
+    const handleChange = (e) => {
+        if(e.target.value === ADD_EDIT_SELECT.WEIGHTED_CELL) {
+            setIsWeightSelected(true);
+        } else {
+            setIsWeightSelected(false);
+        }
+    }
+    return (
         <>
             <FormControl
                 variant="outlined"
@@ -30,18 +38,27 @@ const AddSelector = () => {
                     </Typography>
                 </InputLabel>
                 <Select
-                    labelId="test-select-label"
-                    id="demo-simple-select-autowidth"
+                    labelId="add-edit-select-label"
+                    id="add-edit-select-id"
                     autoWidth
                     label="Add/Edit"
                     sx={{ color: "white" }}
-                    defaultValue = ""
+                    defaultValue={ADD_EDIT_SELECT.SOURCE}
+                    onChange={handleChange}
                 >
-                    <MenuItem value="source">Source</MenuItem>
-                    <MenuItem value="obstacles">Obstacles</MenuItem>
-                    <MenuItem value="destination">Destination</MenuItem>
-                    <MenuItem value="weighted-cells">Weighted Cells</MenuItem>
-                    <MenuItem value="checkpoints">Checkpoints</MenuItem>
+                    <MenuItem value={ADD_EDIT_SELECT.SOURCE}>Source</MenuItem>
+                    <MenuItem value={ADD_EDIT_SELECT.OBSTACLE}>
+                        Obstacles
+                    </MenuItem>
+                    <MenuItem value={ADD_EDIT_SELECT.DESTINATION}>
+                        Destination
+                    </MenuItem>
+                    <MenuItem value={ADD_EDIT_SELECT.WEIGHTED_CELL}>
+                        Weighted Cells
+                    </MenuItem>
+                    <MenuItem value={ADD_EDIT_SELECT.CHECKPOINT}>
+                        Checkpoints
+                    </MenuItem>
                 </Select>
             </FormControl>
         </>
