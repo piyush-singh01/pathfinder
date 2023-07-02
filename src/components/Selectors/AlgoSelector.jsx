@@ -5,8 +5,6 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Typography from "@mui/material/Typography";
-import { makeStyles } from "@mui/styles";
-import { TextField } from "@mui/material";
 
 const AlgoSelector = () => {
     return (
@@ -36,11 +34,8 @@ const AlgoSelector = () => {
                     autoWidth
                     label="Algorithm"
                     sx={{ color: "white" }}
-                    defaultValue = ""
+                    defaultValue=""
                 >
-                    {/* <MenuItem value="NONE">
-                        <em>None</em>
-                    </MenuItem> */}
                     <MenuItem value="Astar">A*</MenuItem>
                     <MenuItem value="Dijkstra">Djikstra</MenuItem>
                     <MenuItem value="BFS">BFS</MenuItem>
@@ -49,24 +44,6 @@ const AlgoSelector = () => {
                 </Select>
             </FormControl>
         </>
-
-        // <>
-        //   <FormControl variant='outlined' sx={{ minWidth: 120 }}>
-        //     <InputLabel id="demo-simple-select-label">Age</InputLabel>
-        //     <Select
-        //       native
-        //       // className={classes.select}
-        //       labelId="demo-simple-select-label"
-        //       id="demo-simple-select"
-        //       value={10}
-        //       label="Age"
-        //     >
-        //       <MenuItem value={10}>Ten</MenuItem>
-        //       <MenuItem value={20}>Twenty</MenuItem>
-        //       <MenuItem value={30}>Thirty</MenuItem>
-        //     </Select>
-        //   </FormControl>
-        // </>
     );
 };
 

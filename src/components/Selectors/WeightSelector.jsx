@@ -15,7 +15,7 @@ const WeightSelector = () => {
                     ".MuiOutlinedInput-notchedOutline": {
                         borderColor: "lightgrey",
                     },
-                    width:50
+                    width: 50,
                 }}
                 disabled={false}
             />

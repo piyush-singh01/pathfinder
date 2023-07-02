@@ -7,7 +7,7 @@ import Select from "@mui/material/Select";
 import Typography from "@mui/material/Typography";
 
 const AddSelector = () => {
-    
+
   return (
         <>
             <FormControl
