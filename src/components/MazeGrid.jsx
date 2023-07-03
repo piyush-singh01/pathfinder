@@ -2,19 +2,17 @@ import React from "react";
 import { useEffect, useState } from "react";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import {
-    GRID_ROWS,
-    GRID_COLS,
-    KEYS,
-    ROW_KEYS,
-    CELL_STATE,
-    GRID_VALUE,
-} from "../utils/constants";
+import { KEYS, ROW_KEYS } from "../utils/constants";
 import Cell from "./Cell";
 
 const MazeGrid = ({
     addEdit,
     weight,
+
+    grid,
+    setGrid,
+    gridState,
+    setGridState,
 
     currSource,
     currDestination,
@@ -24,27 +22,8 @@ const MazeGrid = ({
     currCheckpoint1,
     setCurrCheckpoint1,
     currCheckpoint2,
-    setCurrCheckpoint2
+    setCurrCheckpoint2,
 }) => {
-    //Grid containing values and Grid State containing demarkation
-    const [grid, setGrid] = useState([]);
-    const [gridState, setGridState] = useState([]);
-
-    useEffect(() => {
-        const initialGrid = [];
-        const initialState = [];
-        for (let r = 0; r < GRID_ROWS; r++) {
-            initialGrid[r] = [];
-            initialState[r] = [];
-            for (let c = 0; c < GRID_COLS; c++) {
-                initialGrid[r][c] = GRID_VALUE.BLANK;
-                initialState[r][c] = CELL_STATE.BLANK;
-            }
-        }
-        setGrid(initialGrid);
-        setGridState(initialState);
-    }, []);
-
     const containerStyling = css`
         height: 89vh;
         width: 90vw;
@@ -74,17 +53,14 @@ const MazeGrid = ({
                                 key={KEYS[ridx][cidx]}
                                 ridx={ridx}
                                 cidx={cidx}
-                                
                                 gridState={gridState}
                                 setGridState={setGridState}
                                 addEdit={addEdit}
                                 weight={weight}
-                                
                                 currSource={currSource}
                                 currDestination={currDestination}
                                 setCurrSource={setCurrSource}
                                 setCurrDestination={setCurrDestination}
-
                                 currCheckpoint1={currCheckpoint1}
                                 setCurrCheckpoint1={setCurrCheckpoint1}
                                 currCheckpoint2={currCheckpoint2}

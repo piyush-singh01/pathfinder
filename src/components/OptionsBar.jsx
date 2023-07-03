@@ -12,7 +12,7 @@ import AddSelector from "./Selectors/AddSelector";
 import SpeedSelector from "./Selectors/SpeedSelector";
 import WeightSelector from "./Selectors/WeightSelector";
 
-import { BUTTON_COLOR } from "../utils/constants";
+import { GRID_ROWS, GRID_COLS, GRID_VALUE, CELL_STATE, BUTTON_COLOR } from "../utils/constants";
 
 const theme = createTheme({
     palette: {
@@ -22,7 +22,31 @@ const theme = createTheme({
     },
 });
 
-function OptionsBar({ setAlgo, setAddEdit, setSpeed, setWeight, isWeightSelected, setIsWeightSelected }) {
+const OptionsBar = ({
+    setAlgo,
+    setAddEdit,
+    setSpeed,
+    setWeight,
+    isWeightSelected,
+    setIsWeightSelected,
+    setGrid,
+    setGridState,
+}) => {
+
+    const handleClearClick = () => {
+        const initialGrid = [];
+        const initialState = [];
+        for (let r = 0; r < GRID_ROWS; r++) {
+            initialGrid[r] = [];
+            initialState[r] = [];
+            for (let c = 0; c < GRID_COLS; c++) {
+                initialGrid[r][c] = GRID_VALUE.BLANK;
+                initialState[r][c] = CELL_STATE.BLANK;
+            }
+        }
+        setGrid(initialGrid);
+        setGridState(initialState);
+    };
 
     return (
         <AppBar sx={{ backgroundColor: "#023047" }} position="static">
@@ -55,8 +79,14 @@ function OptionsBar({ setAlgo, setAddEdit, setSpeed, setWeight, isWeightSelected
                         <AlgoSelector setAlgo={setAlgo} />
 
                         <div>
-                            <AddSelector setIsWeightSelected={setIsWeightSelected} setAddEdit={setAddEdit} />
-                            <WeightSelector isWeightSelected={isWeightSelected} setWeight={setWeight} />
+                            <AddSelector
+                                setIsWeightSelected={setIsWeightSelected}
+                                setAddEdit={setAddEdit}
+                            />
+                            <WeightSelector
+                                isWeightSelected={isWeightSelected}
+                                setWeight={setWeight}
+                            />
                         </div>
 
                         <div style={{ display: "flex", alignItems: "center" }}>
@@ -65,6 +95,7 @@ function OptionsBar({ setAlgo, setAddEdit, setSpeed, setWeight, isWeightSelected
                                     variant="contained"
                                     size="small"
                                     sx={{ marginLeft: 1, marginRight: 1 }}
+                                    onClick={handleClearClick}
                                 >
                                     Clear
                                 </Button>
@@ -90,5 +121,5 @@ function OptionsBar({ setAlgo, setAddEdit, setSpeed, setWeight, isWeightSelected
             </Container>
         </AppBar>
     );
-}
+};
 export default OptionsBar;
