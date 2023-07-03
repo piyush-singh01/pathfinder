@@ -26,8 +26,12 @@ const App = () => {
 
     const [isWeightSelected, setIsWeightSelected] = useState(false);
 
+
     const [currSource, setCurrSource] = useState([-1, -1]);
     const [currDestination, setCurrDestination] = useState([-1, -1]);
+
+    const [currCheckpoint1, setCurrCheckpoint1] = useState([-1, -1]);
+    const [currCheckpoint2, setCurrCheckpoint2] = useState([-1, -1]);
 
     return (
         <>
@@ -47,10 +51,16 @@ const App = () => {
                     addEdit={addEdit}
                     speed={speed}
                     weight={weight}
+                    
                     currSource={currSource}
                     currDestination={currDestination}
                     setCurrSource={setCurrSource}
                     setCurrDestination={setCurrDestination}
+
+                    currCheckpoint1={currCheckpoint1}
+                    setCurrCheckpoint1={setCurrCheckpoint1}
+                    currCheckpoint2={currCheckpoint2}
+                    setCurrCheckpoint2={setCurrCheckpoint2}
                 />
             </ThemeProvider>
         </>

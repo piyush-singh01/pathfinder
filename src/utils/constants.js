@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
-export const GRID_ROWS = 26;
-export const GRID_COLS = 63;
+export const GRID_ROWS = 32;
+export const GRID_COLS = 75;
 
 // Selected Option
 export const ALGO_SELECT = {
@@ -18,7 +18,8 @@ export const ADD_EDIT_SELECT = {
     SOURCE: 1,
     DESTINATION: 2,
     WEIGHTED_CELL: 3,
-    CHECKPOINT: 4,
+    CHECKPOINT_1: 4,
+    CHECKPOINT_2: 5,
     DEFAULT: 1
 }
 
@@ -34,13 +35,16 @@ export const SPEED_SELECT = {
 export const GRID_VALUE = {
     BLANK: 0,
     OBSTACLE: -1,
+    // Weight: actual cell value will be the weight of the cell.
     
-    // actual cell value will be the weight of the cell.
     SOURCE: -100,
-    DESTINATION: -101,
-    ENQUEUED: -102,
-    VISITED: -103,
-    SHORTEST: -104
+    CHECKPOINT_1: -101,
+    CHECKPOINT_2: -102,
+    DESTINATION: -103,
+
+    ENQUEUED: -110,
+    VISITED: -111,
+    SHORTEST: -112
 }
 
 export const CELL_STATE = {
@@ -48,10 +52,13 @@ export const CELL_STATE = {
     SOURCE: 1,
     OBSTACLE: 2,
     DESTINATION: 3,
-    CHECKPOINT: 4,
-    ENQUEUED: 5,
-    VISITED: 6,
-    SHORTEST: 7
+    CHECKPOINT_1: 4,
+    CHECKPOINT_2: 5,
+    WEIGHTED_CELL: 6,
+
+    ENQUEUED: 7,
+    VISITED: 8,
+    SHORTEST: 9
 }
 
 export const CELL_COLORS = {
@@ -59,7 +66,10 @@ export const CELL_COLORS = {
     SOURCE: "#1231e1",
     OBSTACLE: "#023047",
     DESTINATION: "#F86F03",
-    CHECKPOINT: "#ff1212",
+    CHECKPOINT: {
+        CHECKPOINT_1: "#ff1212",
+        CHECKPOINT_2: "#DB00ff",
+    },
     WEIGHTED_CELL: {
         WEIGHT_1: "#cad2c5",
         WEIGHT_2: "#84a98c",

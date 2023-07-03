@@ -60,8 +60,11 @@ const AddSelector = ({ setIsWeightSelected, setAddEdit }) => {
                     <MenuItem value={ADD_EDIT_SELECT.WEIGHTED_CELL}>
                         Weighted Cells
                     </MenuItem>
-                    <MenuItem value={ADD_EDIT_SELECT.CHECKPOINT}>
-                        Checkpoints
+                    <MenuItem value={ADD_EDIT_SELECT.CHECKPOINT_1}>
+                        {`Checkpoint 1`}
+                    </MenuItem>
+                    <MenuItem value={ADD_EDIT_SELECT.CHECKPOINT_2}>
+                        {`Checkpoint 2`}
                     </MenuItem>
                 </Select>
             </FormControl>

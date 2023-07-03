@@ -9,15 +9,26 @@ import {
     ROW_KEYS,
     CELL_STATE,
     GRID_VALUE,
-
 } from "../utils/constants";
 import Cell from "./Cell";
 
-const MazeGrid = ({ addEdit, weight, currSource, currDestination, setCurrSource, setCurrDestination }) => {
+const MazeGrid = ({
+    addEdit,
+    weight,
+
+    currSource,
+    currDestination,
+    setCurrSource,
+    setCurrDestination,
+
+    currCheckpoint1,
+    setCurrCheckpoint1,
+    currCheckpoint2,
+    setCurrCheckpoint2
+}) => {
     //Grid containing values and Grid State containing demarkation
     const [grid, setGrid] = useState([]);
     const [gridState, setGridState] = useState([]);
-
 
     useEffect(() => {
         const initialGrid = [];
@@ -35,7 +46,7 @@ const MazeGrid = ({ addEdit, weight, currSource, currDestination, setCurrSource,
     }, []);
 
     const containerStyling = css`
-        height: 87vh;
+        height: 89vh;
         width: 90vw;
         margin: auto;
         display: flex;
@@ -54,33 +65,36 @@ const MazeGrid = ({ addEdit, weight, currSource, currDestination, setCurrSource,
     `;
 
     return (
-            <div className="container" css={containerStyling}>
-                <div className="grid" css={gridStyling}>
-                    {grid.map((row, ridx) => (
-                        <div
-                            key={ROW_KEYS[ridx]}
-                            className="row"
-                            css={rowStyling}
-                        >
-                            {row.map((cell, cidx) => (
-                                <Cell
-                                    key={KEYS[ridx][cidx]}
-                                    ridx={ridx}
-                                    cidx={cidx}
-                                    gridState={gridState}
-                                    setGridState={setGridState}
-                                    addEdit={addEdit}
-                                    weight={weight}
-                                    currSource={currSource}
-                                    currDestination={currDestination}
-                                    setCurrSource={setCurrSource}
-                                    setCurrDestination={setCurrDestination}
-                                ></Cell>
-                            ))}
-                        </div>
-                    ))}
-                </div>
+        <div className="container" css={containerStyling}>
+            <div className="grid" css={gridStyling}>
+                {grid.map((row, ridx) => (
+                    <div key={ROW_KEYS[ridx]} className="row" css={rowStyling}>
+                        {row.map((cell, cidx) => (
+                            <Cell
+                                key={KEYS[ridx][cidx]}
+                                ridx={ridx}
+                                cidx={cidx}
+                                
+                                gridState={gridState}
+                                setGridState={setGridState}
+                                addEdit={addEdit}
+                                weight={weight}
+                                
+                                currSource={currSource}
+                                currDestination={currDestination}
+                                setCurrSource={setCurrSource}
+                                setCurrDestination={setCurrDestination}
+
+                                currCheckpoint1={currCheckpoint1}
+                                setCurrCheckpoint1={setCurrCheckpoint1}
+                                currCheckpoint2={currCheckpoint2}
+                                setCurrCheckpoint2={setCurrCheckpoint2}
+                            ></Cell>
+                        ))}
+                    </div>
+                ))}
             </div>
+        </div>
     );
 };
 

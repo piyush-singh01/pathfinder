@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { CELL_STATE, CELL_COLORS, ADD_EDIT_SELECT } from "../utils/constants";
@@ -6,13 +6,20 @@ import { CELL_STATE, CELL_COLORS, ADD_EDIT_SELECT } from "../utils/constants";
 const Cell = ({
     ridx,
     cidx,
+
     gridState,
     setGridState,
     addEdit,
+
     currSource,
     currDestination,
     setCurrSource,
     setCurrDestination,
+
+    currCheckpoint1,
+    setCurrCheckpoint1,
+    currCheckpoint2,
+    setCurrCheckpoint2,
 }) => {
     const handleCellClick = () => {
         if (addEdit === ADD_EDIT_SELECT.SOURCE) {
@@ -71,25 +78,54 @@ const Cell = ({
                 return rowStateArray;
             });
             setGridState(newStateArray);
-        } else if (
-            addEdit === ADD_EDIT_SELECT.CHECKPOINT ||
-            addEdit === ADD_EDIT_SELECT.WEIGHTED_CELL
-        ) {
+        } else if (addEdit === ADD_EDIT_SELECT.CHECKPOINT_1) {
+            const newStateArray = gridState.map((row, r) => {
+                const rowStateArray = row.map((cell, c) => {
+                    if (r === currCheckpoint1[0] && c === currCheckpoint1[1]) {
+                        if (r === ridx && c === cidx) {
+                            const newCheckpoint1 = [-1, -1];
+                            setCurrCheckpoint1(newCheckpoint1);
+                        }
+                        return CELL_STATE.BLANK;
+                    } else if (r === ridx && c === cidx) {
+                        const newCheckpoint1 = [r, c];
+                        setCurrCheckpoint1(newCheckpoint1);
+                        return CELL_STATE.CHECKPOINT_1;
+                    } else {
+                        return cell;
+                    }
+                });
+                return rowStateArray;
+            });
+            setGridState(newStateArray);
+        } else if (addEdit === ADD_EDIT_SELECT.CHECKPOINT_2) {
+            const newStateArray = gridState.map((row, r) => {
+                const rowStateArray = row.map((cell, c) => {
+                    if (r === currCheckpoint2[0] && c === currCheckpoint2[1]) {
+                        if (r === ridx && c === cidx) {
+                            const newCheckpoint2 = [-1, -1];
+                            setCurrCheckpoint2(newCheckpoint2);
+                        }
+                        return CELL_STATE.BLANK;
+                    } else if (r === ridx && c === cidx) {
+                        const newCheckpoint2 = [r, c];
+                        setCurrCheckpoint2(newCheckpoint2);
+                        return CELL_STATE.CHECKPOINT_2;
+                    } else {
+                        return cell;
+                    }
+                });
+                return rowStateArray;
+            });
+            setGridState(newStateArray);
+        } else if (addEdit === ADD_EDIT_SELECT.WEIGHTED_CELL) {
             const newStateArray = gridState.map((row, r) => {
                 const rowStateArray = row.map((cell, c) => {
                     if (r === ridx && c === cidx) {
-                        if (addEdit === ADD_EDIT_SELECT.CHECKPOINT) {
-                            if (cell === CELL_STATE.CHECKPOINT) {
-                                return CELL_STATE.BLANK;
-                            } else {
-                                return CELL_STATE.CHECKPOINT;
-                            }
-                        } else if (addEdit === ADD_EDIT_SELECT.WEIGHTED_CELL) {
-                            if (cell === CELL_STATE.WEIGHTED_CELL) {
-                                return CELL_STATE.BLANK;
-                            } else {
-                                return CELL_STATE.WEIGHTED_CELL;
-                            }
+                        if (cell === CELL_STATE.WEIGHTED_CELL) {
+                            return CELL_STATE.BLANK;
+                        } else {
+                            return CELL_STATE.WEIGHTED_CELL;
                         }
                     } else {
                         return cell;
@@ -102,8 +138,8 @@ const Cell = ({
     };
 
     const cellStyling = (cellState) => css`
-        width: 24px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
         padding: 1px;
         border: thin solid darkcyan;
         ${cellState === CELL_STATE.SOURCE
@@ -122,14 +158,18 @@ const Cell = ({
             ? css`
                   background-color: ${CELL_COLORS.WEIGHTED_CELL.WEIGHT_1};
               `
-            : cellState === CELL_STATE.CHECKPOINT
+            : cellState === CELL_STATE.CHECKPOINT_1
             ? css`
-                  background-color: ${CELL_COLORS.CHECKPOINT};
+                  background-color: ${CELL_COLORS.CHECKPOINT.CHECKPOINT_1};
+              `
+            : cellState === CELL_STATE.CHECKPOINT_2
+            ? css`
+                  background-color: ${CELL_COLORS.CHECKPOINT.CHECKPOINT_2};
               `
             : css`
                   background-color: ${CELL_COLORS.BLANK};
               `}
-        transition: background-color 0.1s; //ease-in 0.3s;
+        /* transition: background-color 0.1s; //ease-in 0.3s; */
     `;
     return (
         <div
