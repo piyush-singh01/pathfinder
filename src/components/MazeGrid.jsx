@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { KEYS, ROW_KEYS } from "../utils/constants";
@@ -43,18 +43,24 @@ const MazeGrid = ({
         display: flex;
     `;
 
+    useEffect(() => {
+        console.log(grid);
+    }, [grid]);
+
     return (
         <div className="container" css={containerStyling}>
             <div className="grid" css={gridStyling}>
                 {grid.map((row, ridx) => (
                     <div key={ROW_KEYS[ridx]} className="row" css={rowStyling}>
-                        {row.map((cell, cidx) => (
+                        {row.map((_, cidx) => (
                             <Cell
                                 key={KEYS[ridx][cidx]}
                                 ridx={ridx}
                                 cidx={cidx}
                                 gridState={gridState}
                                 setGridState={setGridState}
+                                grid={grid}
+                                setGrid={setGrid}
                                 addEdit={addEdit}
                                 weight={weight}
                                 currSource={currSource}

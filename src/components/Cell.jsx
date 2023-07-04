@@ -1,15 +1,19 @@
 import React from "react";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { CELL_STATE, CELL_COLORS, ADD_EDIT_SELECT } from "../utils/constants";
+import { CELL_STATE, CELL_COLORS, ADD_EDIT_SELECT, GRID_VALUE } from "../utils/constants";
 
 const Cell = ({
     ridx,
     cidx,
 
+
+    grid,
+    setGrid,
     gridState,
     setGridState,
     addEdit,
+    weight,
 
     currSource,
     currDestination,
@@ -135,6 +139,30 @@ const Cell = ({
             });
             setGridState(newStateArray);
         }
+                    
+        const newGridArray = grid.map((row, r) => {
+            const rowGridArray = row.map((cell, c) => {
+                if(gridState[r][c] === CELL_STATE.BLANK) {
+                    return GRID_VALUE.BLANK;
+                } else if(gridState[r][c] === CELL_STATE.SOURCE) {
+                    return GRID_VALUE.SOURCE;
+                } else if(gridState[r][c] === CELL_STATE.DESTINATION) {
+                    return GRID_VALUE.DESTINATION;
+                } else if(gridState[r][c] === CELL_STATE.OBSTACLE) {
+                    return GRID_VALUE.OBSTACLE;
+                } else if(gridState[r][c] === CELL_STATE.CHECKPOINT_1) {
+                    return GRID_VALUE.CHECKPOINT_1;
+                } else if(gridState[r][c] === CELL_STATE.CHECKPOINT_2) {
+                    return GRID_VALUE.CHECKPOINT_2;
+                } else if(gridState[r][c] === CELL_STATE.WEIGHTED_CELL) {
+                    return Number(weight);
+                } else {
+                    return GRID_VALUE.BLANK;
+                }
+            })
+            return rowGridArray;
+        })
+        setGrid(newGridArray);
     };
 
     const cellStyling = (cellState) => css`

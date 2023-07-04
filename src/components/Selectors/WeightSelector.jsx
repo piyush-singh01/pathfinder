@@ -4,7 +4,16 @@ import { TextField } from "@mui/material";
 const WeightSelector = ({ isWeightSelected, setWeight }) => {
     
     const handleChange = (e) => {
-        setWeight(e.target.value);
+        let wt = Number(e.target.value);
+        if(isNaN(wt)) {
+            setWeight(1);
+        } else {
+            if(wt > 10) {
+                setWeight(1);
+            } else {
+                setWeight(e.target.value);
+            }
+        }
     }
 
     return (
