@@ -82,10 +82,12 @@ export const CELL_COLORS = {
     SHORTEST: "#11009E",
 }
 
+
+// delay in milliseconds
 export const DELAY = {
-    SLOW: 500,
-    NORMAL: 250,
-    FAST: 50
+    SLOW: 1500,
+    NORMAL: 1000,
+    FAST: 500
 }
 
 export const KEYS = [];
